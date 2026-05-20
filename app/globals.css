@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 35% 97%;
+    --foreground: 30 18% 14%;
+    --muted: 40 18% 92%;
+    --muted-foreground: 30 8% 38%;
+    --card: 40 35% 99%;
+    --card-foreground: 30 18% 14%;
+    --border: 35 18% 84%;
+    --input: 35 18% 84%;
+    --ring: 30 25% 50%;
+    --primary: 30 35% 28%;
+    --primary-foreground: 40 50% 98%;
+    --secondary: 35 20% 90%;
+    --secondary-foreground: 30 18% 14%;
+    --accent: 35 40% 50%;
+    --accent-foreground: 40 50% 98%;
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 40 50% 98%;
+    --radius: 0.4rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-serif;
+    font-feature-settings: "kern", "liga";
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  ::selection {
+    background: hsl(var(--accent) / 0.25);
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply mx-auto px-4 max-w-3xl;
+  }
+  .container-wide {
+    @apply mx-auto px-4 max-w-6xl;
+  }
+  .prose-article {
+    @apply text-[1.08rem] md:text-[1.18rem] leading-[1.85] text-foreground;
+  }
+  .prose-article p {
+    @apply my-5;
+  }
+  .prose-article h2 {
+    @apply mt-12 mb-4 text-2xl md:text-3xl;
+  }
+  .prose-article h3 {
+    @apply mt-8 mb-3 text-xl md:text-2xl;
+  }
+  .prose-article blockquote {
+    @apply my-6 border-s-4 border-accent ps-4 italic text-muted-foreground;
+  }
+  .prose-article a {
+    @apply underline decoration-accent/60 underline-offset-4 hover:decoration-accent;
+  }
+  .prose-article ul, .prose-article ol {
+    @apply ms-6 my-4;
+  }
+  .prose-article ul { list-style: disc; }
+  .prose-article ol { list-style: decimal; }
+  .prose-article li { @apply my-1.5; }
+  .prose-article sup {
+    @apply text-xs;
+    vertical-align: super;
+  }
+
+  .reading-mode .site-header,
+  .reading-mode .site-footer { display: none; }
+  .reading-mode .prose-article {
+    @apply text-[1.2rem] md:text-[1.3rem] leading-[1.9];
+  }
+}
+
+@media print {
+  .site-header, .site-footer, .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .prose-article { font-size: 12pt; line-height: 1.6; max-width: 100%; }
+  a::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+}

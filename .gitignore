@@ -1,0 +1,51 @@
+# dependencies
+node_modules
+.pnp
+.pnp.*
+
+# testing
+coverage
+
+# next.js
+.next
+out
+
+# production
+build
+dist
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env*.local
+.env.production
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# drizzle local
+drizzle/meta/_journal.json.local
+
+# ide
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+
+# scripts working dirs
+/tmp
+/scripts/.imports
