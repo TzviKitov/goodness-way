@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { auth } from "@/lib/auth/config";
 
 export const metadata = {
@@ -35,26 +33,24 @@ export default async function AdminLayout({
       </div>
     );
   }
-  const messages = await getMessages();
+
   return (
-    <NextIntlClientProvider messages={messages}>
-      <div className="min-h-screen bg-muted/30">
-        <header className="border-b border-border bg-background">
-          <div className="container-wide flex items-center gap-5 h-14 text-sm">
-            <Link href="/admin" className="font-semibold">
-              ניהול מערכת
-            </Link>
-            <nav className="flex gap-4 text-muted-foreground">
-              {nav.map((n) => (
-                <Link key={n.href} href={n.href} className="hover:text-foreground">
-                  {n.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </header>
-        <main className="container-wide py-8">{children}</main>
-      </div>
-    </NextIntlClientProvider>
+    <div className="min-h-screen bg-muted/30">
+      <header className="border-b border-border bg-background">
+        <div className="container-wide flex items-center gap-5 h-14 text-sm">
+          <Link href="/admin" className="font-semibold">
+            ניהול מערכת
+          </Link>
+          <nav className="flex gap-4 text-muted-foreground">
+            {nav.map((n) => (
+              <Link key={n.href} href={n.href} className="hover:text-foreground">
+                {n.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
+      <main className="container-wide py-8">{children}</main>
+    </div>
   );
 }

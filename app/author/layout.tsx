@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth/config";
+import { defaultLocale } from "@/lib/i18n/config";
 
 export const metadata = {
   title: "ממשק הכותב",
@@ -33,9 +34,11 @@ export default async function AuthorLayout({
     );
   }
 
+  setRequestLocale(defaultLocale);
   const messages = await getMessages();
+
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider locale={defaultLocale} messages={messages}>
       <div className="min-h-screen bg-muted/30">
         <header className="border-b border-border bg-background">
           <div className="container-wide flex items-center justify-between h-14">
